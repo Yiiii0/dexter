@@ -96,6 +96,15 @@ const MODEL_FACTORIES: Record<string, ModelFactory> = {
         baseURL: 'https://openrouter.ai/api/v1',
       },
     }),
+  forge: (name, opts) =>
+    new ChatOpenAI({
+      model: name.replace(/^forge:/, ''),
+      ...opts,
+      apiKey: getApiKey('FORGE_API_KEY'),
+      configuration: {
+        baseURL: process.env.FORGE_API_BASE ?? 'https://api.forge.tensorblock.co/v1',
+      },
+    }),
   moonshot: (name, opts) =>
     new ChatOpenAI({
       model: name,
