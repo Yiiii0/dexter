@@ -348,11 +348,18 @@ export async function runCli() {
       const input = new ApiKeyInputComponent();
       input.onSubmit = (value) => modelSelection.handleModelInputSubmit(value);
       input.onCancel = () => modelSelection.handleModelInputSubmit(null);
+      const isOpenRouter = state.pendingProvider === 'openrouter';
+      const helperText = isOpenRouter
+        ? 'Type or paste the model name from openrouter.ai/models'
+        : 'Use the Forge format: Provider/model-name';
+      const examplesText = isOpenRouter
+        ? 'Examples: anthropic/claude-3.5-sonnet, openai/gpt-4-turbo, meta-llama/llama-3-70b'
+        : 'Example: OpenAI/gpt-4o, Anthropic/claude-3.5-sonnet';
       renderScreenView(
         `Enter model name for ${getProviderDisplayName(state.pendingProvider)}`,
-        'Type or paste the model name from openrouter.ai/models',
+        helperText,
         input,
-        'Examples: anthropic/claude-3.5-sonnet, openai/gpt-4-turbo, meta-llama/llama-3-70b\nEnter to confirm · esc to go back',
+        `${examplesText}\nEnter to confirm · esc to go back`,
         input,
       );
       return;

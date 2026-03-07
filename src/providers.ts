@@ -60,6 +60,12 @@ export const PROVIDERS: ProviderDef[] = [
     fastModel: 'deepseek-chat',
   },
   {
+    id: 'forge',
+    displayName: 'Forge',
+    modelPrefix: 'forge:',
+    apiKeyEnvVar: 'FORGE_API_KEY',
+  },
+  {
     id: 'openrouter',
     displayName: 'OpenRouter',
     modelPrefix: 'openrouter:',

@@ -114,6 +114,15 @@ const MODEL_FACTORIES: Record<string, ModelFactory> = {
         baseURL: 'https://api.deepseek.com',
       },
     }),
+  forge: (name, opts) =>
+    new ChatOpenAI({
+      model: name.replace(/^forge:/, ''),
+      ...opts,
+      apiKey: getApiKey('FORGE_API_KEY'),
+      configuration: {
+        baseURL: 'https://api.forge.tensorblock.co/v1',
+      },
+    }),
   ollama: (name, opts) =>
     new ChatOllama({
       model: name.replace(/^ollama:/, ''),
